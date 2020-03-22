@@ -1,0 +1,26 @@
+{
+    "name": "usemint-helpers",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/usemin/usemint-helpers.git"
+    },
+    "scripts": {
+        "test": "mocha ./tests/*"
+    },
+    "devDependencies": {
+        "@types/node": "^13.9.3",
+        "mocha": "^4.0.1"
+    },
+    "author": {
+        "name": "Usemint",
+        "url": "https://github.com/usemint"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "@types/node": "^13.9.3",
+        "node": "^13.10.1"
+    }
+}
