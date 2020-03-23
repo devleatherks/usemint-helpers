@@ -5,7 +5,7 @@
     "main": "src/index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/usemin/usemint-helpers.git"
+        "url": "git+https://github.com/devleatherks/usemint-helpers.git"
     },
     "scripts": {
         "test": "mocha ./tests/*"
