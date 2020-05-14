@@ -1,3 +1,4 @@
+import { Builder } from './Builder'
 /**
  * Usemint Helper Var
  * 
@@ -10,6 +11,15 @@
  * @author leather_ks <s.kozhedub@usemint.com>
  */
 export class HelperVariables {
+
+    public static and(...params: []) {
+        const builder = new Builder();
+
+        builder.and(params);
+        builder.object(params);
+
+        return builder;
+    }
 
     /**
      * Checks if a variable is empty

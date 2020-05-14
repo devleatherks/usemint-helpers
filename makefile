@@ -1,0 +1,2 @@
+prod: 
+	tsc && npm publish

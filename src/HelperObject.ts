@@ -51,6 +51,30 @@ export class HelperObject {
     }
 
     /**
+     * Iterate over the object and call the passed callback function
+     * To stop in the callback function, you need to return a false
+     * 
+     * @param {any} object 
+     * @param {(element?: any, key?: string) => boolean} callback 
+     * @param {boolean} numberIndex - Call the callback function only if the numeric index
+     */
+    public static each<ReturnElement>(
+        object: any,
+        callback: (element?: ReturnElement, key?: string) => boolean | void,
+        isNumberIndex: boolean = false
+    ) {
+        for (let key in object) {
+            if (isNumberIndex === true && !HelperVariables.isNumber(key)) {
+                continue;
+            }
+
+            if (callback(object[key], key) === false) {
+                break;
+            }
+        }
+    }
+
+    /**
      * Get Name Class
      * 
      * @param constructor 
