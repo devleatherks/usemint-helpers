@@ -80,12 +80,25 @@ class HelperObject {
      *
      * @return {any}
      */
-    static get(object, path, def = void 0) {
+    static get(object, path, def) {
         path = HelperVariables_1.HelperVariables.isArray(path) ? path : path.split('.');
         let result = path.reduce((previousValue, currentValue) => {
             return previousValue && previousValue[currentValue];
         }, object);
-        return result !== undefined ? result : def;
+        if (HelperVariables_1.HelperVariables.isUndefined(result)) {
+            if (HelperVariables_1.HelperVariables.isUndefined(def) && arguments.length == 2) {
+                throw new Error("No default parameter set");
+            }
+            else {
+                return def;
+            }
+        }
+        return result;
+    }
+    a() {
+        let a = HelperObject.get({ car: {
+                color: "#FF"
+            } }, 'aaa.vvv');
     }
     /**
      * Set an array item to a given value using "dot" notation.

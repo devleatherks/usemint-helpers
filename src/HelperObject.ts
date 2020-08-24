@@ -1,5 +1,10 @@
 import { HelperVariables } from './HelperVariables';
-
+interface AA {
+    car: {
+        color: string
+        speed: number
+    }
+}
 /**
  * Usemint Helper Object
  * 
@@ -99,14 +104,30 @@ export class HelperObject {
      * 
      * @return {any}
      */
-    public static get<T>(object: any, path: string|Array<string>, def: T | undefined = void 0): T {
+    public static get<T, V>(object: any, path: string|Array<string>, def?: V): V {
         path = HelperVariables.isArray(path) ? path : path.split('.');
     
-        let result = path.reduce((previousValue: any, currentValue: string) => {
+        let result = path.reduce<V>((previousValue: any, currentValue: string) => {
             return previousValue && previousValue[currentValue];
         }, object);
-    
-        return result !== undefined ? result : def;
+
+        if (HelperVariables.isUndefined(result)) {
+            if (HelperVariables.isUndefined(def) && arguments.length == 2) {
+                throw new Error("No default parameter set");
+            } else {
+                return def as V;
+            }
+        }
+
+        return result as V;
+    }
+
+    public a() {
+        let a = HelperObject.get<AA, AA['car']['speed']>({car: {
+            color: "#FF"
+        }}, 'aaa.vvv');
+
+        
     }
 
     /**

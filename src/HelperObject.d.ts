@@ -44,7 +44,8 @@ export declare class HelperObject {
      *
      * @return {any}
      */
-    static get<T>(object: any, path: string | Array<string>, def?: T | undefined): T;
+    static get<T, V>(object: any, path: string | Array<string>, def?: V): V;
+    a(): void;
     /**
      * Set an array item to a given value using "dot" notation.
      *
