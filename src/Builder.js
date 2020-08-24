@@ -1,28 +1,28 @@
-import { array } from ".";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Usemint Helper Var
- * 
+ *
  * Functions for working with variables
- * 
+ *
  * @package Helper
  * @copyright Usemint 2020
  * @link usemint.com
  * @link usemint.com/dev/npm/usemint-helpers
  * @author leather_ks <s.kozhedub@usemint.com>
  */
-export class Builder {
-
-    private _object: any;
-    private _attr: Array<any> = [];
-    private _type = '';
-
-    public and(attr: Array<any>) {
+class Builder {
+    constructor() {
+        this._attr = [];
+        this._type = '';
+    }
+    and(attr) {
         this._attr = attr;
         this._type = 'AND';
     }
-
-    public object(object: any) {
+    object(object) {
         this._object = object;
     }
 }
+exports.Builder = Builder;
+//# sourceMappingURL=Builder.js.map

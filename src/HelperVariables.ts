@@ -12,7 +12,7 @@ import { Builder } from './Builder'
  */
 export class HelperVariables {
 
-    public static and(...params: []) {
+    public static and(...params: Array<any>) {
         const builder = new Builder();
 
         builder.and(params);
@@ -63,7 +63,7 @@ export class HelperVariables {
      * 
      * @returns {boolean}
      */
-    public static isFunction(variable: any): variable is (...param: any) => any {
+    public static isFunction(variable: any): variable is (...param: Array<any>) => any {
         return !!(variable && variable.constructor && variable.call && variable.apply);
     }
 

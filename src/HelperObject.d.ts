@@ -21,6 +21,15 @@ export declare class HelperObject {
      */
     static isPlainObject(object: object): boolean;
     /**
+     * Iterate over the object and call the passed callback function
+     * To stop in the callback function, you need to return a false
+     *
+     * @param {any} object
+     * @param {(element?: any, key?: string) => boolean} callback
+     * @param {boolean} numberIndex - Call the callback function only if the numeric index
+     */
+    static each<ReturnElement>(object: any, callback: (element?: ReturnElement, key?: string) => boolean | void, isNumberIndex?: boolean): void;
+    /**
      * Get Name Class
      *
      * @param constructor
@@ -35,7 +44,7 @@ export declare class HelperObject {
      *
      * @return {any}
      */
-    static get(object: any, path: string | Array<string>, def?: any): any;
+    static get<T>(object: any, path: string | Array<string>, def?: T | undefined): T;
     /**
      * Set an array item to a given value using "dot" notation.
      *

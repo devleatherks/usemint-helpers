@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Builder_1 = require("./Builder");
 /**
  * Usemint Helper Var
  *
@@ -12,6 +13,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @author leather_ks <s.kozhedub@usemint.com>
  */
 class HelperVariables {
+    static and(...params) {
+        const builder = new Builder_1.Builder();
+        builder.and(params);
+        builder.object(params);
+        return builder;
+    }
     /**
      * Checks if a variable is empty
      *

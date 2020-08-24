@@ -1,3 +1,4 @@
+import { Builder } from './Builder';
 /**
  * Usemint Helper Var
  *
@@ -10,6 +11,7 @@
  * @author leather_ks <s.kozhedub@usemint.com>
  */
 export declare class HelperVariables {
+    static and(...params: Array<any>): Builder;
     /**
      * Checks if a variable is empty
      *
@@ -25,7 +27,7 @@ export declare class HelperVariables {
      *
      * @returns {boolean}
      */
-    static isFunction(variable: any): variable is (...param: any) => any;
+    static isFunction(variable: any): variable is (...param: Array<any>) => any;
     /**
      * Determines if a variable is a string
      *
