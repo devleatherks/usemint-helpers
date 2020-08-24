@@ -1,5 +1,7 @@
 import { HelperVariables } from './HelperVariables';
-
+interface SS {
+    a: string
+}
 /**
  * Usemint Helper Object
  * 
@@ -95,7 +97,7 @@ export class HelperObject {
      * 
      * @return {any}
      */
-    public static get(object: any, path: string|Array<string>, def: any = void 0): any {
+    public static get<T>(object: any, path: string|Array<string>, def: T | undefined = void 0): T {
         path = HelperVariables.isArray(path) ? path : path.split('.');
 
         let result = path.reduce((previousValue: any, currentValue: string) => {
@@ -104,7 +106,7 @@ export class HelperObject {
 
         return result !== undefined ? result : def;
     }
-
+    
     /**
      * Set an array item to a given value using "dot" notation.
      *
