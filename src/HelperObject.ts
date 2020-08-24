@@ -1,9 +1,15 @@
+import { object } from '.';
 import { HelperVariables } from './HelperVariables';
+
+
 interface AA {
     car: {
         color: string
-        speed: number
+        speed?: number
     }
+}
+interface AnyObject extends Object {
+    [pre: string]: any
 }
 /**
  * Usemint Helper Object
@@ -98,36 +104,24 @@ export class HelperObject {
     /**
      * Get an item from an array using "dot" notation.
      *
-     * @param {array}                   object
+     * @param {object}                   object
      * @param {string|Array<string>}    path
-     * @param {any}                     def
+     * @param {V}                     def
      * 
-     * @return {any}
+     * @return {V}
      */
-    public static get<T, V>(object: any, path: string|Array<string>, def?: V): V {
+    public static get<V>(object: any, path: string | Array<string>, def: V): V {
         path = HelperVariables.isArray(path) ? path : path.split('.');
-    
+
         let result = path.reduce<V>((previousValue: any, currentValue: string) => {
             return previousValue && previousValue[currentValue];
         }, object);
 
         if (HelperVariables.isUndefined(result)) {
-            if (HelperVariables.isUndefined(def) && arguments.length == 2) {
-                throw new Error("No default parameter set");
-            } else {
-                return def as V;
-            }
+            return def as V;
         }
 
         return result as V;
-    }
-
-    public a() {
-        let a = HelperObject.get<AA, AA['car']['speed']>({car: {
-            color: "#FF"
-        }}, 'aaa.vvv');
-
-        
     }
 
     /**
@@ -141,8 +135,8 @@ export class HelperObject {
      * 
      * @return array
      */
-    public static set(object: any, path: string|Array<string>, value: any) {
-        if(!HelperVariables.isObject(object)) {
+    public static set(object: any, path: string | Array<string>, value: any) {
+        if (!HelperVariables.isObject(object)) {
             return false;
         }
 
@@ -181,7 +175,7 @@ export class HelperObject {
      * @param {keyof T} key 
      * @param value 
      */
-    public static insert<T extends Object>(object: T, key: keyof T, value: any): void{
+    public static insert<T extends Object>(object: T, key: keyof T, value: any): void {
         object[key] = value;
     }
 
@@ -192,11 +186,11 @@ export class HelperObject {
      * @param value 
      */
     public static value<T extends Object>(object: T, key: keyof T, def: any): any | boolean {
-        if(!HelperVariables.isObject(object)) {
+        if (!HelperVariables.isObject(object)) {
             return false;
         }
 
-        if(key in object) {
+        if (key in object) {
             return object[key];
         }
 
