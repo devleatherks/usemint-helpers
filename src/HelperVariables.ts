@@ -28,7 +28,7 @@ export class HelperVariables {
      * 
      * @returns {boolean} 
      */
-    static empty(variable: any): boolean {
+    static empty(variable: any): variable is true {
         if (this.isNull(variable)) {
             return true;
         } else if (this.isUndefined(variable)) {

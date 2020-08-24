@@ -1,5 +1,3 @@
-import { array } from ".";
-
 /**
  * Usemint Helper Var
  * 

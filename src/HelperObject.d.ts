@@ -28,7 +28,7 @@ export declare class HelperObject {
      * @param {(element?: any, key?: string) => boolean} callback
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
-    static each<ReturnElement>(object: any, callback: (element?: ReturnElement, key?: string) => boolean | void, isNumberIndex?: boolean): void;
+    static each<ReturnElement>(object: any, callback: (element?: ReturnElement, key?: string) => boolean | void, isNumberIndex?: boolean): true | undefined;
     /**
      * Get Name Class
      *

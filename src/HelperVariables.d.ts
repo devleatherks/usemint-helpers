@@ -19,7 +19,7 @@ export declare class HelperVariables {
      *
      * @returns {boolean}
      */
-    static empty(variable: any): boolean;
+    static empty(variable: any): variable is true;
     /**
      * Determines if a variable is a function
      *

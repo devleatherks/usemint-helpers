@@ -54,10 +54,12 @@ class HelperObject {
             if (isNumberIndex === true && !HelperVariables_1.HelperVariables.isNumber(key)) {
                 continue;
             }
-            if (callback(object[key], key) === false) {
+            var ret = callback(object[key], key);
+            if (ret === false) {
                 break;
             }
         }
+        return ret || void 0;
     }
     /**
      * Get Name Class
