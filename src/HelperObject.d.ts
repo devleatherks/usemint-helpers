@@ -1,3 +1,7 @@
+interface ObjectArr<T> {
+    readonly length?: number;
+    [index: number]: T;
+}
 /**
  * Usemint Helper Object
  *
@@ -25,10 +29,10 @@ export declare class HelperObject {
      * To stop in the callback function, you need to return a false
      *
      * @param {any} object
-     * @param {(element: any, key: string) => Promise<boolean | void>} callback
+     * @param {(value: T, index: string, array: T[]) => Promise<any>} callback
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
-    static each<ReturnElement>(object: any, callback: (value: ReturnElement, index: number, array: ReturnElement[]) => Promise<any>): Promise<unknown>;
+    static each<O extends ObjectArr<T>, T>(object: O, callback: (value: T, index: string, array: O) => Promise<any>): Promise<unknown>;
     /**
      * Get Name Class
      *
@@ -73,3 +77,4 @@ export declare class HelperObject {
      */
     static value<T extends Object>(object: T, key: keyof T, def: any): any | boolean;
 }
+export {};

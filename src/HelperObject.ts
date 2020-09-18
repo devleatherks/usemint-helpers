@@ -1,8 +1,10 @@
 import { HelperVariables } from './HelperVariables';
 
-interface AnyObject extends Object {
-    [pre: string]: any
+interface ObjectArr<T> {
+    readonly length?: number;
+    [index: number]: T;
 }
+
 /**
  * Usemint Helper Object
  * 
@@ -56,18 +58,18 @@ export class HelperObject {
     /**
      * Iterate over the object and call the passed callback function
      * To stop in the callback function, you need to return a false
-     * 
-     * @param {any} object 
-     * @param {(value: T, index: number, array: T[]) => Promise<any>} callback 
+     *
+     * @param {any} object
+     * @param {(value: T, index: string, array: T[]) => Promise<any>} callback
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
-    public static async each<O extends {[pre: string]: T}, T>(
+    public static async each<O extends ObjectArr<T>, T>(
         object: O,
-        callback: (value: T, index: number, array: O) => Promise<any>
+        callback: (value: T, index: string, array: O) => Promise<any>
     ) {
         return new Promise((resolve) => {
             Object.keys(object).some(async (value: any) => {
-                const result = await callback(object[value], value, object);
+                const result = await callback(object[value], String(value), object);
 
                 if (!HelperVariables.isUndefined(result)) {
                     return resolve(result);

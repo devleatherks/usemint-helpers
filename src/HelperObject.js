@@ -56,14 +56,14 @@ class HelperObject {
      * To stop in the callback function, you need to return a false
      *
      * @param {any} object
-     * @param {(element: any, key: string) => Promise<boolean | void>} callback
+     * @param {(value: T, index: string, array: T[]) => Promise<any>} callback
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
     static each(object, callback) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve) => {
-                Object.keys(object).some((value, index, array) => __awaiter(this, void 0, void 0, function* () {
-                    const result = yield callback(value, index, array);
+                Object.keys(object).some((value) => __awaiter(this, void 0, void 0, function* () {
+                    const result = yield callback(object[value], String(value), object);
                     if (!HelperVariables_1.HelperVariables.isUndefined(result)) {
                         return resolve(result);
                     }
