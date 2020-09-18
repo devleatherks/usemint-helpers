@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HelperArray = void 0;
 const HelperVariables_1 = require("./HelperVariables");
 /**
  * Usemint Helper Array

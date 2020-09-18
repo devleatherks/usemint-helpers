@@ -1,13 +1,5 @@
-import { object } from '.';
 import { HelperVariables } from './HelperVariables';
 
-
-interface AA {
-    car: {
-        color: string
-        speed?: number
-    }
-}
 interface AnyObject extends Object {
     [pre: string]: any
 }
@@ -66,27 +58,22 @@ export class HelperObject {
      * To stop in the callback function, you need to return a false
      * 
      * @param {any} object 
-     * @param {(element?: any, key?: string) => boolean} callback 
+     * @param {(value: T, index: number, array: T[]) => Promise<any>} callback 
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
-    public static each<ReturnElement>(
-        object: any,
-        callback: (element?: ReturnElement, key?: string) => boolean | void,
-        isNumberIndex: boolean = false
+    public static async each<O extends {[pre: string]: T}, T>(
+        object: O,
+        callback: (value: T, index: number, array: O) => Promise<any>
     ) {
-        for (let key in object) {
-            if (isNumberIndex === true && !HelperVariables.isNumber(key)) {
-                continue;
-            }
+        return new Promise((resolve) => {
+            Object.keys(object).some(async (value: any) => {
+                const result = await callback(object[value], value, object);
 
-            var ret = callback(object[key], key);
-
-            if (ret === false) {
-                break;
-            }
-        }
-
-        return ret || void 0;
+                if (!HelperVariables.isUndefined(result)) {
+                    return resolve(result);
+                }
+            });
+        });
     }
 
     /**

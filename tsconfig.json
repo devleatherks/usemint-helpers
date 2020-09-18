@@ -1,27 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "es2015",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "strict": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "declaration": true,
-    "typeRoots": [
-      "./node_modules/@types"
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "strict": true,
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "include": [
+        "./**/*",
     ],
-    "types": [
-      "node"
+    "exclude": [
+        "node_modules",
+        "src/templates",
+        "**/*.spec.ts",
+        "src/dist"
     ]
-  },
-  "include": [
-    "src/**/*",
-  ],
-  "exclude": [
-    "node_modules",
-    "src/templates",
-    "**/*.spec.ts",
-    "src/dist"
-  ]
 }

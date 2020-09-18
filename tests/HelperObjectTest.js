@@ -8,12 +8,22 @@ let objTest = {
     }
 }
 
-it('Сheck HelperObject::get', () => {
+it('Check HelperObject::get', () => {
     assert.equal(HelperObject.get(objTest, 'qwerty.str', 6), 5, );
     assert.equal(HelperObject.get(objTest, 'qwerty.strs', 6), 6);
 });
 
-it('Сheck HelperObject::set', () => {
+it('Check HelperObject::set', () => {
     HelperObject.set(objTest, 'qwerty.str', 8);
+    assert.equal(HelperObject.get(objTest, 'qwerty.str', 4), 8);
+});
+
+it('Check HelperObject::each', () => {
+    HelperObject.each({
+        a: 4
+    }, async () => {
+        
+    });
+
     assert.equal(HelperObject.get(objTest, 'qwerty.str', 4), 8);
 });

@@ -25,10 +25,10 @@ export declare class HelperObject {
      * To stop in the callback function, you need to return a false
      *
      * @param {any} object
-     * @param {(element?: any, key?: string) => boolean} callback
+     * @param {(element: any, key: string) => Promise<boolean | void>} callback
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
-    static each<ReturnElement>(object: any, callback: (element?: ReturnElement, key?: string) => boolean | void, isNumberIndex?: boolean): true | undefined;
+    static each<ReturnElement>(object: any, callback: (value: ReturnElement, index: number, array: ReturnElement[]) => Promise<any>): Promise<unknown>;
     /**
      * Get Name Class
      *
@@ -38,14 +38,13 @@ export declare class HelperObject {
     /**
      * Get an item from an array using "dot" notation.
      *
-     * @param {array}                   object
+     * @param {object}                   object
      * @param {string|Array<string>}    path
-     * @param {any}                     def
+     * @param {V}                     def
      *
-     * @return {any}
+     * @return {V}
      */
-    static get<T, V>(object: any, path: string | Array<string>, def?: V): V;
-    a(): void;
+    static get<V>(object: any, path: string | Array<string>, def: V): V;
     /**
      * Set an array item to a given value using "dot" notation.
      *

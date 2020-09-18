@@ -1,5 +1,15 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HelperObject = void 0;
 const HelperVariables_1 = require("./HelperVariables");
 /**
  * Usemint Helper Object
@@ -46,20 +56,20 @@ class HelperObject {
      * To stop in the callback function, you need to return a false
      *
      * @param {any} object
-     * @param {(element?: any, key?: string) => boolean} callback
+     * @param {(element: any, key: string) => Promise<boolean | void>} callback
      * @param {boolean} numberIndex - Call the callback function only if the numeric index
      */
-    static each(object, callback, isNumberIndex = false) {
-        for (let key in object) {
-            if (isNumberIndex === true && !HelperVariables_1.HelperVariables.isNumber(key)) {
-                continue;
-            }
-            var ret = callback(object[key], key);
-            if (ret === false) {
-                break;
-            }
-        }
-        return ret || void 0;
+    static each(object, callback) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve) => {
+                Object.keys(object).some((value, index, array) => __awaiter(this, void 0, void 0, function* () {
+                    const result = yield callback(value, index, array);
+                    if (!HelperVariables_1.HelperVariables.isUndefined(result)) {
+                        return resolve(result);
+                    }
+                }));
+            });
+        });
     }
     /**
      * Get Name Class
@@ -74,11 +84,11 @@ class HelperObject {
     /**
      * Get an item from an array using "dot" notation.
      *
-     * @param {array}                   object
+     * @param {object}                   object
      * @param {string|Array<string>}    path
-     * @param {any}                     def
+     * @param {V}                     def
      *
-     * @return {any}
+     * @return {V}
      */
     static get(object, path, def) {
         path = HelperVariables_1.HelperVariables.isArray(path) ? path : path.split('.');
@@ -86,19 +96,9 @@ class HelperObject {
             return previousValue && previousValue[currentValue];
         }, object);
         if (HelperVariables_1.HelperVariables.isUndefined(result)) {
-            if (HelperVariables_1.HelperVariables.isUndefined(def) && arguments.length == 2) {
-                throw new Error("No default parameter set");
-            }
-            else {
-                return def;
-            }
+            return def;
         }
         return result;
-    }
-    a() {
-        let a = HelperObject.get({ car: {
-                color: "#FF"
-            } }, 'aaa.vvv');
     }
     /**
      * Set an array item to a given value using "dot" notation.
