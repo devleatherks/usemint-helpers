@@ -1,5 +1,5 @@
 const assert = require('assert');
-let HelperArrayExport = require('../src/HelperArray');
+let HelperArrayExport = require('../dist/HelperArray');
 HelperArray = HelperArrayExport.HelperArray;
 
 

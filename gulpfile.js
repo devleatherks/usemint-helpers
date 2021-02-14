@@ -1,35 +1,18 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
-const sourcemaps = require('gulp-sourcemaps');
+const del = require('del');
 
-function tsAdmin(tsChangeFile) {
-    return gulp.src(tsChangeFile).pipe(sourcemaps.init())
-        .pipe(ts({
-            sourceMap: true,
-            strictNullChecks: true,
-            module: "amd",
-            jsx: "react",
-            target: "es2015",
-            allowJs: true,
-            baseUrl: ".",
-            outFile: 'usemint-helpers.js',
-            declaration: true,
-            allowSyntheticDefaultImports: true,
-            experimentalDecorators: true,
-            moduleResolution: "node",
-            "typeRoots": [
-                "./node_modules/@types"
-            ],
-            "types": [
-                "node"
-            ],
-        }))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist'))
-}
+const tsconfig = require(__dirname  + '/tsconfig.json');
 
-gulp.task('admin:ts', function(a) {
-    return tsAdmin(['./**/*.ts', '!node_modules/**/*']);
+gulp.task('build:clear', function() {
+    return del('dist/**', {force: true});
 });
 
-gulp.task('default', gulp.series(['admin:ts']));
+gulp.task('build:ts', function(a) {
+    return gulp.src([
+        './src/**/*.ts',
+    ]).pipe(ts(tsconfig.compilerOptions))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('default', gulp.series(['build:clear', 'build:ts']));

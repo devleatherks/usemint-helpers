@@ -1,4 +1,4 @@
 prod: 
-	tsc && gulp && npm publish
+	gulp && npm publish
 build: 
-	tsc && gulp
+	gulp

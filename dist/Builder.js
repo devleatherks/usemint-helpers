@@ -26,4 +26,3 @@ class Builder {
     }
 }
 exports.Builder = Builder;
-//# sourceMappingURL=Builder.js.map

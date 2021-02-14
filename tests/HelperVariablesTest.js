@@ -1,5 +1,5 @@
 const assert = require('assert');
-let HelperVariablesExport = require('../src/HelperVariables');
+let HelperVariablesExport = require('../dist/HelperVariables');
 HelperVariables = HelperVariablesExport.HelperVariables;
 
 let allTypes = {

@@ -1,5 +1,5 @@
 const assert = require('assert');
-let HelperObjectExport = require('../src/HelperObject');
+let HelperObjectExport = require('../dist/HelperObject');
 HelperObject = HelperObjectExport.HelperObject;
 
 let objTest = {

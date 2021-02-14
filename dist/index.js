@@ -7,4 +7,3 @@ var HelperVariables_1 = require("./HelperVariables");
 Object.defineProperty(exports, "variables", { enumerable: true, get: function () { return HelperVariables_1.HelperVariables; } });
 var HelperObject_1 = require("./HelperObject");
 Object.defineProperty(exports, "object", { enumerable: true, get: function () { return HelperObject_1.HelperObject; } });
-//# sourceMappingURL=index.js.map
